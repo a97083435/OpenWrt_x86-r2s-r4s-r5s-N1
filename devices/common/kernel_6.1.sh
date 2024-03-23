@@ -16,6 +16,8 @@ curl -sfL https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/packa
 
 sed -i "s/tty\(0\|1\)::askfirst/tty\1::respawn/g" target/linux/*/base-files/etc/inittab
 
+sed -i "s/no-lto,/no-lto no-mold,/" include/package.mk
+
 echo "
 CONFIG_TESTING_KERNEL=y
 

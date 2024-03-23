@@ -44,6 +44,8 @@ curl -sfL https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linu
 
 sed -i "s/CONFIG_WERROR=y/CONFIG_WERROR=n/" target/linux/generic/config-5.15
 
+sed -i "s/no-lto,$/no-lto no-mold,$/" include/package.mk
+
 [ -d package/kernel/mt76 ] && {
 mkdir package/kernel/mt76/patches
 curl -sfL https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/package/kernel/mt76/patches/0001-mt76-allow-VHT-rate-on-2.4GHz.patch -o package/kernel/mt76/patches/0001-mt76-allow-VHT-rate-on-2.4GHz.patch
