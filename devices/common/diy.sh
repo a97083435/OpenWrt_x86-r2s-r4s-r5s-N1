@@ -46,10 +46,10 @@ curl -sfL https://raw.githubusercontent.com/openwrt/openwrt/main/package/kernel/
 
 sed -i "s/CONFIG_WERROR=y/CONFIG_WERROR=n/" target/linux/generic/config-5.15
 
-grep -q "23.05" include/version.mk && [ -d package/kernel/mt76 ] && {
+[ -d package/kernel/mt76 ] && {
 mkdir package/kernel/mt76/patches
 curl -sfL https://raw.githubusercontent.com/immortalwrt/immortalwrt/master/package/kernel/mt76/patches/0001-mt76-allow-VHT-rate-on-2.4GHz.patch -o package/kernel/mt76/patches/0001-mt76-allow-VHT-rate-on-2.4GHz.patch
-} || rm -rf devices/common/patches/mt7922.patch
+}
 
 grep -q "1.8.8" package/network/utils/iptables/Makefile && {
 rm -rf package/network/utils/iptables
@@ -81,8 +81,6 @@ sed -i \
 	-e 's/+python\( \|$\)/+python3/' \
 	-e 's?../../lang?$(TOPDIR)/feeds/packages/lang?' \
 	package/feeds/kiddin9/*/Makefile
-
-rm -rf package/network/utils/xdp-tools package/feeds/packages/v4l2loopback
 
 (
 if [ -f sdk.tar.xz ]; then
