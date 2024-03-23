@@ -11,6 +11,8 @@ git_clone_path master https://github.com/coolsnowwolf/lede target/linux/x86/patc
 curl -sfL https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/kernel/linux/modules/video.mk -o package/kernel/linux/modules/video.mk
 curl -sfL https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/x86/base-files/etc/board.d/02_network -o target/linux/x86/base-files/etc/board.d/02_network
 
+curl -sfL https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/x86/64/config-6.1 -o target/linux/x86/64/config-6.1
+
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += kmod-usb-hid kmod-mmc kmod-sdhci usbutils pciutils lm-sensors-detect kmod-alx kmod-vmxnet3 kmod-igbvf kmod-iavf kmod-bnx2x kmod-pcnet32 kmod-tulip kmod-r8125 kmod-8139cp kmod-8139too kmod-i40e kmod-drm-i915 kmod-drm-amdgpu kmod-mlx4-core kmod-mlx5-core fdisk lsblk kmod-phy-broadcom/' target/linux/x86/Makefile
 
 mv -f tmp/r81* feeds/kiddin9/
@@ -30,7 +32,7 @@ CONFIG_MMC_SDHCI=y
 CONFIG_MMC_SDHCI_ACPI=y
 CONFIG_MMC_SDHCI_PCI=y
 CONFIG_DRM_I915=y
-' >> ./target/linux/x86/config-5.15
+' >> ./target/linux/x86/config-6.1
 
 sed -i "s/enabled '0'/enabled '1'/g" feeds/packages/utils/irqbalance/files/irqbalance.config
 
